@@ -1,0 +1,16 @@
+<%- layout('layouts/main') %>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+<% products.forEach((product) => { %>
+    <div class="col">
+        <div class="card">
+            <img src="<%= product.thumbnail %>" class="card-img-top" alt="<%= product.name %>">
+            <div class="card-body">
+                <h5 class="card-title"><%= product.name %></h5>
+                <p class="card-text"><%= product.description %></p>
+                <a href="<%= product._id %>" class="btn btn-primary">Ver más</a>
+            </div>
+        </div>
+    </div>
+<% }) %>
+</div>
