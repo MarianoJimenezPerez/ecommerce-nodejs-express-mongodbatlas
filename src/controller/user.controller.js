@@ -15,7 +15,7 @@ const accLogout = (req, res, next) => {
             return next(err); 
         }
     
-        return res.redirect('/user');
+        return res.redirect('/');
     });
 }
 

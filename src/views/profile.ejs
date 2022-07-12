@@ -1,5 +1,28 @@
 <%- layout('layouts/main') %>
-
-<%= user._id%>
-<%= user.email %>
-<%= user.password %>
+<div class="container mt-3">
+    <div class="card mb-3 container" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="..." class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Profile</h5>
+            <form>
+                <fieldset disabled>
+                    <legend>Welcome <%= user.name%>!</legend>
+                    <div class="mb-3">
+                        <label for="disabledUser" class="form-label">Name</label>
+                        <input type="text" id="disabledUser" class="form-control" placeholder="<%= user._id%>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="disabledPassword" class="form-label">Password</label>
+                        <input type="text" id="disabledPassword" class="form-control" placeholder="<%= user.password %>">
+                    </div>
+                </fieldset>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
