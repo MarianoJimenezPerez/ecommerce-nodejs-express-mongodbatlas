@@ -1,6 +1,9 @@
+const dotenv = require('dotenv').config();
+
+
 module.exports = {
   mongodb: {
-    URI: 'mongodb+srv://mariano:5535538@proyecto-final-coder.chalkx8.mongodb.net/?retryWrites=true&w=majority',
+    URI: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@proyecto-final-coder.chalkx8.mongodb.net/?retryWrites=true&w=majority`,
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,
