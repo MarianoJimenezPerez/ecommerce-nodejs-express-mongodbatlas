@@ -1,0 +1,45 @@
+<%- layout('layouts/main') %>
+
+<div class="container mt-3">
+    <div class="card mb-3 container" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="/dsa.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Add product</h5>
+                    <form action="/write-product" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" placeholder="Zeus H510">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <input type="text" class="form-control" name="category" placeholder="Teclados">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <input type="text" class="form-control" name="description" placeholder="This is the best keyboard">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Price</label>
+                            <input type="number" class="form-control" name="price" placeholder="200">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Stock</label>
+                            <input type="number" class="form-control" name="stock" placeholder="10">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Thumbnail</label>
+                            <input type="text" class="form-control" name="thumbnail" placeholder="src">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-3">
+                            Add product
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

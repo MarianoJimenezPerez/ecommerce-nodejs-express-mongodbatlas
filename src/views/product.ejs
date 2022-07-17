@@ -1,11 +1,22 @@
 <%- layout('layouts/main') %>
 <div class="container mt-3">
+    <%if ( p.stock <= 0) {%>
+        <div class="alert alert-danger" role="alert">
+            Product without stock
+        </div>
+    <% } %>
+    <%if ( p.stock <= 3 && p.stock != 0) {%>
+        <div class="alert alert-warning" role="alert">
+            Last <%= p.stock %> units in stock!
+        </div>
+    <% } %>
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="<%= p.thumbnail %>" alt="<%= p.name %>" /></div>
                 <div class="col-md-6">
                     <div id="sku" class="small mb-1">SKU: <%= p._id %></div>
+                    <div id="cat" class="small mb-1">CAT: <%= p.category %></div>
                     <h1 class="display-5 fw-bolder"><%= p.name %></h1>
                     <div class="fs-5 mb-5">
                         <span class="text-decoration-line-through"><%= p.price %></span>
@@ -13,12 +24,20 @@
                     </div>
                     <p class="lead"><%= p.description %></p>
                     <div class="d-flex">
-                        <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                        <form action="/add" method="POST">
+                        <form class="d-flex f-row" action="/add" method="POST">
+                            <%if ( p.stock > 0) {%>
+                                <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" disabled/>
+                            <% } %>
                             <input type="text" name="productId" value="<%= p._id %>" hidden>
-                            <button type="submit" id="addBtn" class="btn btn-outline-dark flex-shrink-0" type="button">
-                                Agregar al carrito
-                            </button>
+                            <%if ( p.stock > 0) {%>
+                                <button type="submit" id="addBtn" class="btn btn-outline-dark flex-shrink-0" type="button">
+                                    Agregar al carrito
+                                </button>
+                            <% } else { %>
+                                <button type="button" id="addBtn" class="btn btn-outline-dark flex-shrink-0" type="button" disabled>
+                                    Agregar al carrito
+                                </button>
+                            <% } %>
                         </form>
                     </div>
                 </div>

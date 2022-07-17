@@ -40,6 +40,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/', require('./routes/index'));
 app.use('/user', require('./routes/user'));
+app.use('/category', require('./routes/category'));
 
 // Starting the server
 app.listen(app.get('port'), () => {

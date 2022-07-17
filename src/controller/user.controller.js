@@ -5,7 +5,7 @@ const isAuthenticated = (req, res, next) => {
         return next();
     }
     
-    return res.redirect('/user');
+    return res.redirect('/user/signin');
 }
 
 //Retorna de manera async el logout
