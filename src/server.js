@@ -6,8 +6,14 @@ const session = require('express-session');
 const passport = require('passport');
 const morgan = require('morgan');
 
+
 // initializations
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+
 require('./database');
 require('./passport/local-auth');
 
@@ -37,12 +43,45 @@ app.use((req, res, next) => {
   next();
 });
 
+
+
+
 // routes
 app.use('/', require('./routes/index'));
 app.use('/user', require('./routes/user'));
 app.use('/category', require('./routes/category'));
 
+//socketio 
+
+let date = new Date;
+const mesagges = [
+  {
+      email: "System",
+      message: "Bienvenido",
+      hour: `[${date.getHours()}:${date.getMinutes()}]` // envio la fecha en formato [hora:minutos] de cuando se conecta el socket
+  }
+];
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  //disconect
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+
+  //envio los mensajes históricos
+  socket.emit('historic messages', mesagges)
+
+  //escucho nuevos mensajes
+  socket.on('new message', data => {
+    mesagges.push(data)
+    io.sockets.emit('historic messages', mesagges)
+  })
+
+});
+
 // Starting the server
-app.listen(app.get('port'), () => {
+server.listen(app.get('port'), () => {
   console.log('server on port', app.get('port'));
 });

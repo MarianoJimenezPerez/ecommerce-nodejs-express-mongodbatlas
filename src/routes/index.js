@@ -9,6 +9,9 @@ router.get('/write-product', getAddForm);
 router.post('/write-product', pushProductToDB);
 router.get('/my-cart', isAuthenticated, getCart);
 router.post('/send-order', isAuthenticated, getCheckOut);
+router.get('/support', (req, res) => {
+    res.render('support');
+});
 router.get('/:id', isAuthenticated, getProductById);
 
 /* USER ACC */
